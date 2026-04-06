@@ -22,17 +22,18 @@
 //    4. Save and push to GitHub
 //
 //  Fields:
-//    id          — unique short name, no spaces (used internally)
-//    title       — project name as displayed
-//    category    — 'professional' or 'personal'
-//    subtitle    — short label shown in the detail view (e.g. 'Opto-Mechanical Design')
-//    summary     — one or two sentences for the card in the grid
-//    featured    — true/false, set true for up to 4 projects to show on the home page
-//    images      — array of image URLs (first one is the card thumbnail)
-//    sections    — array of { heading, text } blocks for the detail view
-//    tags        — array of skill/tool labels shown on the card and detail view
-//    filterTags  — array of filter categories: 'optics', 'mechanical', 'systems', 'fabrication'
-//                  (only matters for professional projects, used by the filter tabs)
+//    id            — unique short name, no spaces (used internally)
+//    title         — project name as displayed
+//    category      — 'professional' or 'personal'
+//    subtitle      — short label in the detail view (e.g. 'Opto-Mechanical Design')
+//    summary       — one or two sentences for the card in the grid
+//    featured      — true/false, set true to show on the home page (max 4)
+//    order         — sort position on its category page (lower = earlier). Use 10, 20, 30 for easy inserts.
+//    featuredOrder — sort position in the home page featured grid (lower = earlier)
+//    images        — array of paths. Prefixed with 'images/' automatically, so 'personal/drone.png' works.
+//    sections      — array of { heading, text } blocks for the detail view
+//    tags          — array of skill/tool labels shown on the card and detail view
+//    filterTags    — array of filter categories: 'optics', 'mechanical', 'systems', 'fabrication'
 
 const projects = [
 
@@ -47,8 +48,10 @@ const projects = [
         subtitle: 'Opto-Mechanical Design',
         summary: 'Custom opto-mechanical housing with flexure-based alignment and spring-loaded focal plane positioning.',
         featured: true,
+        order: 10,
+        featuredOrder: 10,
         images: [
-            'images/professional/spec2.png'
+            'professional/spec2.png'
         ],
         sections: [
             {
@@ -75,10 +78,12 @@ const projects = [
         subtitle: 'Mechanical Design + Machining',
         summary: 'Full-rotation alignment fixture with press-fit bearings and locking mechanism. Designed and machined from scratch.',
         featured: true,
+        order: 20,
+        featuredOrder: 20,
         images: [
-            'images/professional/exploded_alignment_jig-1.png',
-            'images/professional/align-1.jpg',
-            'images/professional/alignment-jig.png'
+            'professional/exploded_alignment_jig-1.png',
+            'professional/align-1.jpg',
+            'professional/alignment-jig.png'
         ],
         sections: [
             {
@@ -105,8 +110,10 @@ const projects = [
         subtitle: 'Optical Mounting',
         summary: 'Custom retaining ring system for rectangular optics, eliminating adhesive bonding for frequently swapped components.',
         featured: true,
+        order: 30,
+        featuredOrder: 30,
         images: [
-            'images/professional/retain_ring2.png'
+            'professional/retain_ring2.png'
         ],
         sections: [
             {
@@ -137,11 +144,12 @@ const projects = [
         subtitle: 'Personal Project',
         summary: 'Fully specced, designed, and 3D-printed micro drone with FEM-validated body and custom propeller models.',
         featured: false,
+        order: 20,
         images: [
-            'images/personal/explode_drone-1.png',
-            'images/personal/drone-built.jpg',
-            'images/personal/drome-fem-1.png',
-            'images/personal/drone.png'
+            'personal/explode_drone-1.png',
+            'personal/drone-built.jpg',
+            'personal/drome-fem-1.png',
+            'personal/drone.png'
         ],
         sections: [
             {
@@ -164,9 +172,10 @@ const projects = [
         subtitle: 'Personal Project',
         summary: 'Machined aluminum dice tower with square internal corners achieved through modular front plate construction.',
         featured: false,
+        order: 30,
         images: [
-            'images/personal/tower-built.jpg',
-            'images/personal/dice-tower.png'
+            'personal/tower-built.jpg',
+            'personal/dice-tower.png'
         ],
         sections: [
             {
@@ -181,23 +190,25 @@ const projects = [
         tags: ['Machining', 'SolidWorks', 'DFM'],
         filterTags: []
     },
-    
+
     {
-    id: 'flaming-fountain',
-    title: 'Flaming Fountain',
-    category: 'personal',        // or 'personal'
-    subtitle: 'Mechanical Design + Art',
-    summary: 'A water fountain I built that you can light on fire!',
-    featured: true,                 // set true to show on home page (max 4)
-    images: ['images/personal/flamefountainheadshot.jpg'],
-    sections: [
-        { heading: 'Goal', text: 'The goal was to build a beautiful, mesmerizing art piece that makes you second guess your understanding of the physical world.' },
-        { heading: 'Approach', text: 'A friend and I wanted to interate on a small scale prototype flaming fountain I built in 2025.  The aim was to scale it up and make it better.  We built a three head water fountain that relied on laminar flow of the water to carry injected propane up to the apex of the stream.  This resulted in the top of the water able to literally be lit on fire and support a self sustaining flame.' },
-        { heading: 'Role', text: 'I designed the propane injection system and laminar flow nozzle it was coaxial with. Additionally I handled overall set design and fluid mechanics.' }
-    ],
-    tags: ['Mechanical', 'Propane', 'Art'],
-    filterTags: ['art', 'mechanical']
-    },
+        id: 'flaming-fountain',
+        title: 'Flaming Fountain',
+        category: 'personal',
+        subtitle: 'Mechanical Design + Art',
+        summary: 'A water fountain I built that you can light on fire!',
+        featured: true,
+        order: 10,
+        featuredOrder: 40,
+        images: ['personal/flamefountainheadshot.jpg'],
+        sections: [
+            { heading: 'Goal', text: 'The goal was to build a beautiful, mesmerizing art piece that makes you second guess your understanding of the physical world.' },
+            { heading: 'Approach', text: 'A friend and I wanted to iterate on a small scale prototype flaming fountain I built in 2025. The aim was to scale it up and make it better. We built a three head water fountain that relied on laminar flow of the water to carry injected propane up to the apex of the stream. This resulted in the top of the water able to literally be lit on fire and support a self sustaining flame.' },
+            { heading: 'Role', text: 'I designed the propane injection system and laminar flow nozzle it was coaxial with. Additionally I handled overall set design and fluid mechanics.' }
+        ],
+        tags: ['Mechanical', 'Propane', 'Art'],
+        filterTags: ['art', 'mechanical']
+    }
 
     // ——————————————————————————————————————
     //  ADD NEW PROJECTS ABOVE THIS LINE
@@ -218,6 +229,7 @@ const siteConfig = {
     linkedin: '',       // <-- Paste your LinkedIn URL here
     github: '',         // <-- Paste your GitHub URL here
     photo: 'images/personal/explode_drone-1.png',
+    imagePath: 'images/',  // all project image paths get this prefix automatically
     aboutParagraphs: [
         'I am an opto-mechanical engineer with experience spanning micro-optics, fiber optics, collimation systems, expanded beam connectors, and precision alignment. My professional work has taken me from biomedical terahertz imaging research through space telescope production, spectrometer design, and micro-optics quality control.',
         'I hold an MS in Opto-Mechanical Engineering. I work in SolidWorks and OnShape, run FEM analysis on everything I design, and machine or 3D print my own prototypes. I am as comfortable debugging a tolerance stack as I am cutting metal on a mill.',
@@ -341,17 +353,16 @@ const siteConfig = {
         gap: 24px; margin-bottom: 80px;
     }
     #featured-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 860px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-@media (max-width: 768px) {
-    #featured-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
     }
-}
+    @media (max-width: 768px) {
+        #featured-grid {
+            grid-template-columns: 1fr;
+        }
+    }
     .project-card {
         background: var(--card-bg); border: 1px solid var(--border);
         overflow: hidden; cursor: pointer;
@@ -597,6 +608,13 @@ const siteConfig = {
     //  SITE BUILDER — You don't need to touch anything below
     // ============================================================
 
+    // Helper: auto-prefix image paths unless they're already full URLs or already start with 'images/'
+    function resolveImage(path) {
+        if (!path) return '';
+        if (path.indexOf('http') === 0 || path.indexOf('images/') === 0) return path;
+        return siteConfig.imagePath + path;
+    }
+
     function createCard(project) {
         const card = document.createElement('div');
         card.className = 'project-card';
@@ -604,7 +622,7 @@ const siteConfig = {
         card.onclick = function() { openProject(project.id); };
         card.innerHTML =
             '<div class="project-card-img">' +
-                '<img src="' + project.images[0] + '" alt="' + project.title + '" loading="lazy">' +
+                '<img src="' + resolveImage(project.images[0]) + '" alt="' + project.title + '" loading="lazy">' +
             '</div>' +
             '<div class="project-card-body">' +
                 '<h3>' + project.title + '</h3>' +
@@ -621,7 +639,10 @@ const siteConfig = {
         document.getElementById('heroIntro').textContent = siteConfig.headline;
         var grid = document.getElementById('featured-grid');
         grid.innerHTML = '';
-        var featured = projects.filter(function(p) { return p.featured; }).slice(0, 4);
+        var featured = projects
+            .filter(function(p) { return p.featured; })
+            .sort(function(a, b) { return (a.featuredOrder || 999) - (b.featuredOrder || 999); })
+            .slice(0, 4);
         featured.forEach(function(p) { grid.appendChild(createCard(p)); });
     }
 
@@ -637,17 +658,19 @@ const siteConfig = {
         });
         var grid = document.getElementById('professional-grid');
         grid.innerHTML = '';
-        projects.filter(function(p) { return p.category === 'professional'; }).forEach(function(p) {
-            grid.appendChild(createCard(p));
-        });
+        projects
+            .filter(function(p) { return p.category === 'professional'; })
+            .sort(function(a, b) { return (a.order || 999) - (b.order || 999); })
+            .forEach(function(p) { grid.appendChild(createCard(p)); });
     }
 
     function buildPersonal() {
         var grid = document.getElementById('personal-grid');
         grid.innerHTML = '';
-        projects.filter(function(p) { return p.category === 'personal'; }).forEach(function(p) {
-            grid.appendChild(createCard(p));
-        });
+        projects
+            .filter(function(p) { return p.category === 'personal'; })
+            .sort(function(a, b) { return (a.order || 999) - (b.order || 999); })
+            .forEach(function(p) { grid.appendChild(createCard(p)); });
     }
 
     function buildAbout() {
@@ -707,7 +730,7 @@ const siteConfig = {
         if (!project) return;
         currentImages = project.images;
         currentIndex = 0;
-        document.getElementById('modalImage').src = currentImages[0];
+        document.getElementById('modalImage').src = resolveImage(currentImages[0]);
         var dotsEl = document.getElementById('galleryDots');
         dotsEl.innerHTML = currentImages.map(function(_, i) {
             return '<div class="gallery-dot ' + (i === 0 ? 'active' : '') + '" onclick="goToImage(' + i + ')"></div>';
@@ -735,7 +758,7 @@ const siteConfig = {
 
     function goToImage(i) {
         currentIndex = i;
-        document.getElementById('modalImage').src = currentImages[currentIndex];
+        document.getElementById('modalImage').src = resolveImage(currentImages[currentIndex]);
         document.querySelectorAll('.gallery-dot').forEach(function(d, idx) {
             d.classList.toggle('active', idx === currentIndex);
         });
