@@ -47,8 +47,8 @@ const projects = [
         subtitle: 'System Level Design',
         summary: 'System overhaul project of flagship product.',
         featured: true,
-        order: 9,
-        featuredOrder: 9,
+        order: 1,
+        featuredOrder: 1,
         images: [
             'professional/auroratx.webp'
         ],
@@ -69,7 +69,34 @@ const projects = [
         tags: ['SolidWorks', 'Optical Design', 'Precision Assembly', 'Tolerance Analysis'],
         filterTags: ['optics', 'mechanical', 'microfluidics']
     },
-    
+    {
+    id: 'moonbow',
+    title: 'Moonbow',
+    category: 'professional',
+    subtitle: 'Opto-Mechanical Design + Non-Linear Optics',
+    summary: 'Package design and anaylsis and optical alignment of harmonically tripled UV laser.',
+    featured: true,
+    order: 2,
+    featuredOrder: 2,
+    images: ['professional/moonbow.jpg'],  // use a generic render or skip
+    sections: [
+        {
+            heading: 'Problem',
+            text: 'A matchbox size, epoxyless, hermetically sealed, pulsed UV laser was being developed for NASA. The package had to be designed and toleranced to fit the compact laser cavity. Additionally precise alignment techniques and fixturing had to be developed to test and build several packages.'
+        },
+        {
+            heading: 'Approach',
+            text: 'I designed and assembled the nonlinear optics laser package by considering optical layouts, alignment methods, material properties, programmatic goals, and design for assembly. Exotic radiation hardened materials were selected for the space based application.  Addtionally high temperature brazed methods were used to meet the requirements of a hermetically sealed and epoxyless package.'
+        },
+        {
+            heading: 'Role',
+            text: 'I spearheaded the design, analysis, and alignment while checking in with senior engineers for advice and guidance.'
+        },
+
+    ],
+    tags: ['Material Selection', 'Fixturing', 'Alignment', 'Package Design', 'Laser'],
+    filterTags: ['optics', 'mechanical', 'thermal']
+    }
     {
         id: 'spectrometer',
         title: 'Spectrometer Body',
@@ -77,8 +104,8 @@ const projects = [
         subtitle: 'Opto-Mechanical Design',
         summary: 'Custom opto-mechanical housing with flexure-based alignment and spring-loaded focal plane positioning.',
         featured: true,
-        order: 10,
-        featuredOrder: 10,
+        order: 16,
+        featuredOrder: 16,
         images: [
             'professional/spec2.png'
         ],
@@ -106,9 +133,8 @@ const projects = [
         category: 'professional',
         subtitle: 'Mechanical Design + Machining',
         summary: 'Full-rotation alignment fixture with press-fit bearings and locking mechanism. Designed and machined from scratch.',
-        featured: true,
-        order: 20,
-        featuredOrder: 20,
+        featured: false,
+        order: 10,
         images: [
             'professional/exploded_alignment_jig-1.png',
             'professional/align-1.jpg',
@@ -139,8 +165,8 @@ const projects = [
         subtitle: 'Optical Mounting',
         summary: 'Custom retaining ring system for rectangular optics, eliminating adhesive bonding for frequently swapped components.',
         featured: false,
-        order: 30,
-        featuredOrder: 30,
+        order: 15,
+        featuredOrder: 15,
         images: [
             'professional/retain_ring2.png'
         ],
@@ -201,7 +227,7 @@ const projects = [
         subtitle: 'Personal Project',
         summary: 'Machined aluminum dice tower with square internal corners achieved through modular front plate construction.',
         featured: false,
-        order: 30,
+        order: 45,
         images: [
             'personal/tower-built.jpg',
             'personal/dice-tower.png'
