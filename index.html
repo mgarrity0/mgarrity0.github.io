@@ -136,7 +136,7 @@ const projects = [
         category: 'personal',
         subtitle: 'Personal Project',
         summary: 'Fully specced, designed, and 3D-printed micro drone with FEM-validated body and custom propeller models.',
-        featured: true,
+        featured: false,
         images: [
             'images/personal/explode_drone-1.png',
             'images/personal/drone-built.jpg',
@@ -182,6 +182,22 @@ const projects = [
         filterTags: []
     },
     
+    {
+    id: 'flaming-fountain',
+    title: 'Flaming Fountain',
+    category: 'personal',        // or 'personal'
+    subtitle: 'Mechanical Design + Art',
+    summary: 'A water fountain I built that you can light on fire!',
+    featured: True,                 // set true to show on home page (max 4)
+    images: ['images/personal/flamefountainheadshot.jpg'],
+    sections: [
+        { heading: 'Goal', text: 'The goal was to build a beautiful, mesmerizing art piece that makes you second guess your understanding of the physical world.' },
+        { heading: 'Approach', text: 'A friend and I wanted to interate on a small scale prototype flaming fountain I built in 2025.  The aim was to scale it up and make it better.  We built a three head water fountain that relied on laminar flow of the water to carry injected propane up to the apex of the stream.  This resulted in the top of the water able to literally be lit on fire and support a self sustaining flame.' },
+        { heading: 'Role', text: 'I designed the propane injection system and laminar flow nozzle it was coaxial with. Additionally I handled overall set design and fluid mechanics.' }
+    ],
+    tags: ['Mechanical', 'Propane', 'Art'],
+    filterTags: ['art', 'mechanical']
+    },
 
     // ——————————————————————————————————————
     //  ADD NEW PROJECTS ABOVE THIS LINE
