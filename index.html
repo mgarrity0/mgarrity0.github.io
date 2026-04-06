@@ -340,6 +340,18 @@ const siteConfig = {
         display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
         gap: 24px; margin-bottom: 80px;
     }
+    #featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    #featured-grid {
+        grid-template-columns: 1fr;
+    }
+}
     .project-card {
         background: var(--card-bg); border: 1px solid var(--border);
         overflow: hidden; cursor: pointer;
