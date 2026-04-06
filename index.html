@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matthew Garrity | Opto-Mechanical Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<script>
+// ============================================================
+//  PROJECT DATA — THIS IS THE ONLY THING YOU EDIT TO ADD WORK
+// ============================================================
+//
+//  To add a new project:
+//    1. Copy one of the objects below
+//    2. Paste it at the end of the array (before the closing bracket)
+//    3. Fill in your info
+//    4. Save and push to GitHub
+//
+//  Fields:
+//    id          — unique short name, no spaces (used internally)
+//    title       — project name as displayed
+//    category    — 'professional' or 'personal'
+//    subtitle    — short label shown in the detail view (e.g. 'Opto-Mechanical Design')
+//    summary     — one or two sentences for the card in the grid
+//    featured    — true/false, set true for up to 4 projects to show on the home page
+//    images      — array of image URLs (first one is the card thumbnail)
+//    sections    — array of { heading, text } blocks for the detail view
+//    tags        — array of skill/tool labels shown on the card and detail view
+//    filterTags  — array of filter categories: 'optics', 'mechanical', 'systems', 'fabrication'
+//                  (only matters for professional projects, used by the filter tabs)
+
+const projects = [
+
+    // ——————————————————————————————————————
+    //  PROFESSIONAL PROJECTS
+    // ——————————————————————————————————————
+
+    {
+        id: 'spectrometer',
+        title: 'Spectrometer Body',
+        category: 'professional',
+        subtitle: 'Opto-Mechanical Design',
+        summary: 'Custom opto-mechanical housing with flexure-based alignment and spring-loaded focal plane positioning.',
+        featured: true,
+        images: [
+            'https://matthewggarrity.com/wp-content/uploads/2019/06/spec2.png',
+            'https://matthewggarrity.com/wp-content/uploads/2019/06/spc1.png'
+        ],
+        sections: [
+            {
+                heading: 'Problem',
+                text: 'An imaging spectrometer needed a custom housing that could maintain optical alignment across multiple components while allowing for field adjustment of the focal plane array. Off-the-shelf enclosures could not meet the positioning requirements.'
+            },
+            {
+                heading: 'Approach',
+                text: 'I designed a monolithic body with integrated flexures for angular alignment of incoming rays and dedicated mounting surfaces with controlled datum relationships. Spring-loaded mechanisms allow for precise focusing of the focal plane array without disturbing the overall alignment. All proprietary optical components interface through kinematic mounting features.'
+            },
+            {
+                heading: 'Role',
+                text: 'Sole mechanical designer. Responsible for all CAD, tolerancing, and specification of the housing and its interfaces to the optical train.'
+            }
+        ],
+        tags: ['SolidWorks', 'Optical Design', 'Precision Assembly', 'Flexure Design', 'Tolerance Analysis'],
+        filterTags: ['optics', 'mechanical', 'systems']
+    },
+
+    {
+        id: 'alignment-jig',
+        title: 'Alignment Jigging',
+        category: 'professional',
+        subtitle: 'Mechanical Design + Machining',
+        summary: 'Full-rotation alignment fixture with press-fit bearings and locking mechanism. Designed and machined from scratch.',
+        featured: true,
+        images: [
+            'https://matthewggarrity.com/wp-content/uploads/2019/06/exploded_alignment_jig.png',
+            'https://matthewggarrity.com/wp-content/uploads/2019/06/align-1.jpg',
+            'https://matthewggarrity.com/wp-content/uploads/2019/06/alignment-jig.png'
+        ],
+        sections: [
+            {
+                heading: 'Problem',
+                text: 'The spectrometer assembly required an alignment procedure involving precise angular positioning in two axes. No commercial fixture met the requirements for rotation range and positional repeatability.'
+            },
+            {
+                heading: 'Approach',
+                text: 'I designed a fixture providing 360 degrees of rotation and 180 degrees of azimuth travel. Press-fit ball bearings paired with precision balls provide stable, repeatable rotation in both degrees of freedom. A locking mechanism pins the spectrometer at preferred orientations during alignment verification. The modular design allows the fixture to accommodate future instrument variations.'
+            },
+            {
+                heading: 'Role',
+                text: 'Full ownership from concept through delivery. I performed all design work in SolidWorks and machined every part myself.'
+            }
+        ],
+        tags: ['SolidWorks', 'Manual Machining', 'Press-Fit Bearings', 'Kinematic Design', 'Alignment'],
+        filterTags: ['mechanical', 'optics']
+    },
+
+    {
+        id: 'retaining-ring',
+        title: 'Rectangular Optic Retaining Ring Mount',
+        category: 'professional',
+        subtitle: 'Optical Mounting',
+        summary: 'Custom retaining ring system for rectangular optics, eliminating adhesive bonding for frequently swapped components.',
+        featured: true,
+        images: [
+            'https://matthewggarrity.com/wp-content/uploads/2019/07/retain_ring.png',
+            'https://matthewggarrity.com/wp-content/uploads/2019/07/retain_ring2.png'
+        ],
+        sections: [
+            {
+                heading: 'Problem',
+                text: 'Rectangular optics were being bonded into mounts with adhesive, creating a permanent installation. Components that needed frequent swapping for testing or reconfiguration had to be destructively removed.'
+            },
+            {
+                heading: 'Approach',
+                text: 'I designed a custom mount using a retaining ring mechanism adapted for rectangular geometry. The ring provides uniform clamping force without stressing the optic, and components can be swapped in minutes without tools or adhesive. The design maintains positional repeatability across removal and reinstallation cycles.'
+            },
+            {
+                heading: 'Role',
+                text: 'Sole designer. Identified the adhesive bonding issue and proposed the retaining ring solution.'
+            }
+        ],
+        tags: ['Optical Mounting', 'SolidWorks', 'Mechanical Design', 'Retaining Ring'],
+        filterTags: ['optics', 'mechanical']
+    },
+
+    // ——————————————————————————————————————
+    //  PERSONAL PROJECTS
+    // ——————————————————————————————————————
+
+    {
+        id: 'drone',
+        title: 'Micro Drone',
+        category: 'personal',
+        subtitle: 'Personal Project',
+        summary: 'Fully specced, designed, and 3D-printed micro drone with FEM-validated body and custom propeller models.',
+        featured: true,
+        images: [
+            'https://matthewggarrity.com/wp-content/uploads/2019/06/drone.png',
+            'https://matthewggarrity.com/wp-content/uploads/2019/06/drone_ship.png',
+            'https://matthewggarrity.com/wp-content/uploads/2019/06/fem.png',
+            'https://matthewggarrity.com/wp-content/uploads/2019/06/prop.png'
+        ],
+        sections: [
+            {
+                heading: 'Overview',
+                text: 'A micro drone designed from the ground up as a personal project. I selected all components, designed the airframe in SolidWorks, validated it with FEM to confirm the body could handle motor vibration and thrust loads, and 3D printed the final assembly.'
+            },
+            {
+                heading: 'Details',
+                text: 'The propeller models were built as CAD exercises to deepen my understanding of surface modeling in SolidWorks. While not production propellers, they are dimensionally representative and helped me develop lofting and surfacing skills that I have applied to professional work since.'
+            }
+        ],
+        tags: ['SolidWorks', 'FEM', '3D Printing', 'Surface Modeling'],
+        filterTags: []
+    },
+
+    {
+        id: 'dice-tower',
+        title: 'Dice Tower',
+        category: 'personal',
+        subtitle: 'Personal Project',
+        summary: 'Machined aluminum dice tower with square internal corners achieved through modular front plate construction.',
+        featured: false,
+        images: [
+            'https://matthewggarrity.com/wp-content/uploads/2019/06/unnamed-1.jpg',
+            'https://matthewggarrity.com/wp-content/uploads/2019/06/dice-tower.png',
+            'https://matthewggarrity.com/wp-content/uploads/2019/06/exploded-dice-tower.png'
+        ],
+        sections: [
+            {
+                heading: 'Overview',
+                text: 'A machined dice tower designed for board gaming. The design constraint was square internal corners throughout, which drove the decision to split the front plate into modular segments that could be individually machined and assembled.'
+            },
+            {
+                heading: 'Details',
+                text: 'Designed in SolidWorks and machined by hand. The modular front plate approach turned a manufacturing limitation into a design feature, creating a clean segmented aesthetic while achieving the desired geometry.'
+            }
+        ],
+        tags: ['Machining', 'SolidWorks', 'DFM'],
+        filterTags: []
+    },
+
+    {
+        id: 'ev-mount',
+        title: 'EV Charger Wall Mount',
+        category: 'personal',
+        subtitle: 'Personal Project',
+        summary: 'PETG wall mount for outdoor EV charger storage. Material selected for UV resistance and mechanical strength over PLA.',
+        featured: false,
+        images: [
+            'https://matthewggarrity.com/wp-content/uploads/2021/01/wall-moint.png',
+            'https://matthewggarrity.com/wp-content/uploads/2021/01/20210111_094855.jpg'
+        ],
+        sections: [
+            {
+                heading: 'Overview',
+                text: 'A wall-mounted storage solution for an electric vehicle charger. The existing setup involved draping the charger cable and connector over a hook, which was messy and risked damaging the connector.'
+            },
+            {
+                heading: 'Details',
+                text: 'Designed and printed in PETG, chosen over PLA for its UV resistance and superior mechanical properties in an outdoor environment. The mount secures both the cable and connector body cleanly against the wall.'
+            }
+        ],
+        tags: ['3D Printing', 'PETG', 'Functional Design', 'CAD'],
+        filterTags: []
+    }
+
+    // ——————————————————————————————————————
+    //  ADD NEW PROJECTS ABOVE THIS LINE
+    //  Just copy one of the objects above, paste it here, and fill in your info.
+    //  Don't forget to add a comma after the closing } of the previous project.
+    // ——————————————————————————————————————
+
+];
+
+// ============================================================
+//  SITE CONFIG — Update your personal info here
+// ============================================================
+
+const siteConfig = {
+    name: 'Matthew Garrity',
+    headline: 'Opto-Mechanical Engineer. I design and build precision optical hardware. Bridging microns to millimeters, marrying optical and mechanical tolerances and the challenges between them.',
+    email: 'm.garrity0@gmail.com',
+    linkedin: '',       // <-- Paste your LinkedIn URL here
+    github: '',         // <-- Paste your GitHub URL here
+    photo: 'https://matthewggarrity.com/wp-content/uploads/2019/06/15977852_10208560722956797_8401239445369996773_n.jpg?w=720',
+    aboutParagraphs: [
+        'I am an opto-mechanical engineer with experience spanning micro-optics, fiber optics, collimation systems, expanded beam connectors, and precision alignment. My professional work has taken me from biomedical terahertz imaging research through space telescope production, spectrometer design, and micro-optics quality control.',
+        'I hold an MS in Opto-Mechanical Engineering. I work in SolidWorks and OnShape, run FEM analysis on everything I design, and machine or 3D print my own prototypes. I am as comfortable debugging a tolerance stack as I am cutting metal on a mill.',
+        'Outside of work, I build large-scale interactive installations for Burning Man, design wearable LED systems on ESP32 microcontrollers, craft chainmail, and make hot sauce. My home workshop is equal parts optics lab and art studio.'
+    ],
+    skills: [
+        {
+            heading: 'Optical',
+            items: ['Micro-optics', 'Fiber optics', 'Collimation systems', 'Expanded beam connectors', 'PSF / MTF analysis', 'Precision alignment']
+        },
+        {
+            heading: 'Mechanical',
+            items: ['SolidWorks', 'OnShape', 'FEM / FEA', 'GD&T', 'Tolerance analysis', 'Manual machining']
+        },
+        {
+            heading: 'Fabrication',
+            items: ['3D printing (FDM / PETG / PLA)', 'Laser cutting', 'Mill + lathe', 'Soldering + assembly']
+        },
+        {
+            heading: 'Software',
+            items: ['Python', 'ESP32 / embedded C', 'TouchDesigner', 'MATLAB']
+        }
+    ],
+    professionalFilters: [
+        { label: 'All', value: 'all' },
+        { label: 'Optics', value: 'optics' },
+        { label: 'Mechanical Design', value: 'mechanical' },
+        { label: 'Systems', value: 'systems' },
+        { label: 'Fabrication', value: 'fabrication' }
+    ]
+};
+</script>
+
+<style>
+    :root {
+        --bg: #FAFAF8;
+        --bg-alt: #F0EFED;
+        --text: #1A1A1A;
+        --text-secondary: #5A5A58;
+        --accent: #2D3E50;
+        --accent-light: #3D5269;
+        --border: #D8D6D2;
+        --card-bg: #FFFFFF;
+        --tag-bg: #E8E6E2;
+        --tag-text: #3A3A38;
+        --max-width: 1200px;
+        --nav-height: 64px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 400;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.65;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+    }
+    nav {
+        position: fixed; top: 0; left: 0; right: 0;
+        height: var(--nav-height);
+        background: rgba(250, 250, 248, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        z-index: 100;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 clamp(24px, 4vw, 48px);
+    }
+    .nav-name {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 14px; font-weight: 500;
+        letter-spacing: 0.04em; text-transform: uppercase;
+        color: var(--text); text-decoration: none; cursor: pointer;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+        font-size: 14px; font-weight: 400; color: var(--text-secondary);
+        text-decoration: none; letter-spacing: 0.01em;
+        transition: color 0.2s ease; cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .hamburger {
+        display: none; flex-direction: column; gap: 5px;
+        cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .hamburger span { width: 22px; height: 2px; background: var(--text); transition: all 0.3s ease; }
+    .page { display: none; min-height: 100vh; padding-top: var(--nav-height); }
+    .page.active { display: block; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px); }
+    .hero { padding: 120px 0 80px; }
+    .hero-label {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 12px; font-weight: 500;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: var(--text-secondary); margin-bottom: 20px;
+    }
+    .hero h1 {
+        font-family: 'Instrument Serif', serif;
+        font-size: clamp(42px, 6vw, 72px); font-weight: 400;
+        line-height: 1.08; letter-spacing: -0.02em;
+        color: var(--text); margin-bottom: 32px;
+    }
+    .hero-intro { font-size: 18px; line-height: 1.7; color: var(--text-secondary); max-width: 640px; }
+    .section-header {
+        display: flex; align-items: baseline; justify-content: space-between;
+        margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+    }
+    .section-header h2 {
+        font-family: 'Instrument Serif', serif;
+        font-size: 28px; font-weight: 400; letter-spacing: -0.01em;
+    }
+    .section-header a {
+        font-size: 14px; color: var(--accent); text-decoration: none;
+        font-weight: 500; cursor: pointer; transition: opacity 0.2s;
+    }
+    .section-header a:hover { opacity: 0.7; }
+    .project-grid {
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 24px; margin-bottom: 80px;
+    }
+    .project-card {
+        background: var(--card-bg); border: 1px solid var(--border);
+        overflow: hidden; cursor: pointer;
+        transition: border-color 0.25s ease, transform 0.25s ease;
+        opacity: 0; transform: translateY(16px);
+        animation: fadeUp 0.5s ease forwards;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .project-card:nth-child(1) { animation-delay: 0.05s; }
+    .project-card:nth-child(2) { animation-delay: 0.1s; }
+    .project-card:nth-child(3) { animation-delay: 0.15s; }
+    .project-card:nth-child(4) { animation-delay: 0.2s; }
+    .project-card:nth-child(5) { animation-delay: 0.25s; }
+    .project-card:nth-child(6) { animation-delay: 0.3s; }
+    .project-card:nth-child(7) { animation-delay: 0.35s; }
+    .project-card:nth-child(8) { animation-delay: 0.4s; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .project-card-img { width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: var(--bg-alt); }
+    .project-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .project-card:hover .project-card-img img { transform: scale(1.03); }
+    .project-card-body { padding: 24px; }
+    .project-card-body h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; line-height: 1.3; }
+    .project-card-body p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 11px; font-weight: 400; letter-spacing: 0.02em;
+        padding: 4px 10px; background: var(--tag-bg); color: var(--tag-text);
+    }
+    .modal-overlay {
+        display: none; position: fixed; inset: 0;
+        background: rgba(26, 26, 26, 0.5); z-index: 200;
+        overflow-y: auto; padding: 40px 24px;
+    }
+    .modal-overlay.active { display: flex; justify-content: center; align-items: flex-start; }
+    .modal { background: var(--bg); max-width: 860px; width: 100%; position: relative; margin: 40px auto; }
+    .modal-close {
+        position: absolute; top: 24px; right: 24px;
+        width: 36px; height: 36px; background: var(--bg-alt);
+        border: 1px solid var(--border); cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 18px; color: var(--text-secondary); transition: all 0.2s; z-index: 10;
+    }
+    .modal-close:hover { background: var(--border); color: var(--text); }
+    .modal-gallery { width: 100%; background: var(--bg-alt); position: relative; overflow: hidden; }
+    .modal-gallery img { width: 100%; display: block; }
+    .gallery-nav {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        width: 36px; height: 36px; background: rgba(255,255,255,0.9);
+        border: 1px solid var(--border); cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 16px; color: var(--text); transition: all 0.2s;
+    }
+    .gallery-nav:hover { background: #fff; }
+    .gallery-prev { left: 12px; }
+    .gallery-next { right: 12px; }
+    .gallery-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0; background: var(--bg-alt); }
+    .gallery-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: background 0.2s; }
+    .gallery-dot.active { background: var(--accent); }
+    .modal-content { padding: 48px; }
+    .modal-content h2 { font-family: 'Instrument Serif', serif; font-size: 32px; font-weight: 400; margin-bottom: 8px; }
+    .modal-meta {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+        color: var(--text-secondary); margin-bottom: 32px;
+    }
+    .modal-section { margin-bottom: 28px; }
+    .modal-section h4 {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--text-secondary); margin-bottom: 10px;
+    }
+    .modal-section p { font-size: 15px; line-height: 1.75; color: var(--text); }
+    .page-header { padding: 80px 0 48px; }
+    .page-header h1 {
+        font-family: 'Instrument Serif', serif;
+        font-size: clamp(36px, 5vw, 52px); font-weight: 400;
+        letter-spacing: -0.02em; margin-bottom: 16px;
+    }
+    .page-header p { font-size: 17px; color: var(--text-secondary); max-width: 560px; line-height: 1.7; }
+    .about-layout { display: grid; grid-template-columns: 280px 1fr; gap: 64px; padding: 0 0 80px; }
+    .about-photo { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; filter: grayscale(20%); }
+    .about-text h3 { font-family: 'Instrument Serif', serif; font-size: 24px; font-weight: 400; margin-bottom: 20px; }
+    .about-text p { font-size: 15px; line-height: 1.75; color: var(--text-secondary); margin-bottom: 16px; }
+    .about-text p:last-of-type { margin-bottom: 32px; }
+    .contact-block { border-top: 1px solid var(--border); padding-top: 32px; }
+    .contact-block h4 {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--text-secondary); margin-bottom: 16px;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 8px; }
+    .contact-links a { font-size: 15px; color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+    .contact-links a:hover { opacity: 0.7; }
+    .skills-section { padding: 48px 0 80px; border-top: 1px solid var(--border); }
+    .skills-section h3 { font-family: 'Instrument Serif', serif; font-size: 24px; font-weight: 400; margin-bottom: 28px; }
+    .skills-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; }
+    .skills-col h4 {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--text-secondary); margin-bottom: 12px;
+    }
+    .skills-col ul { list-style: none; }
+    .skills-col li { font-size: 14px; color: var(--text); padding: 4px 0; border-bottom: 1px solid var(--bg-alt); }
+    .filter-tabs { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+    .filter-tab {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 12px; letter-spacing: 0.02em; padding: 6px 16px;
+        background: transparent; border: 1px solid var(--border);
+        color: var(--text-secondary); cursor: pointer; transition: all 0.2s;
+    }
+    .filter-tab:hover { border-color: var(--accent); color: var(--text); }
+    .filter-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    footer { border-top: 1px solid var(--border); padding: 32px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; }
+    .footer-inner span { font-size: 13px; color: var(--text-secondary); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none; position: fixed; top: var(--nav-height);
+            left: 0; right: 0; background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            flex-direction: column; padding: 24px; gap: 16px;
+        }
+        .nav-links.open { display: flex; }
+        .hamburger { display: flex; }
+        .hero { padding: 80px 0 48px; }
+        .project-grid { grid-template-columns: 1fr; }
+        .about-layout { grid-template-columns: 1fr; gap: 32px; }
+        .about-photo { max-width: 240px; }
+        .modal-content { padding: 32px 24px; }
+        .modal-overlay { padding: 0; }
+        .modal { margin: 0; min-height: 100vh; }
+        .footer-inner { flex-direction: column; gap: 12px; }
+    }
+</style>
+
+<!-- NAV -->
+<nav>
+    <a class="nav-name" onclick="showPage('home')">Matthew Garrity</a>
+    <ul class="nav-links" id="navLinks">
+        <li><a onclick="showPage('home')" data-page="home">Home</a></li>
+        <li><a onclick="showPage('professional')" data-page="professional">Professional Work</a></li>
+        <li><a onclick="showPage('personal')" data-page="personal">Personal Projects</a></li>
+        <li><a onclick="showPage('about')" data-page="about">About + Contact</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+    <div class="container">
+        <div class="hero">
+            <div class="hero-label">Portfolio</div>
+            <h1 id="heroName"></h1>
+            <p class="hero-intro" id="heroIntro"></p>
+        </div>
+        <div class="section-header">
+            <h2>Featured Work</h2>
+            <a onclick="showPage('professional')">View all projects &#8594;</a>
+        </div>
+        <div class="project-grid" id="featured-grid"></div>
+    </div>
+</div>
+
+<!-- PROFESSIONAL -->
+<div class="page" id="page-professional">
+    <div class="container">
+        <div class="page-header">
+            <h1>Professional Work</h1>
+            <p>Precision optical hardware, opto-mechanical design, and systems-level engineering. Non-proprietary work and sanitized summaries of proprietary projects.</p>
+        </div>
+        <div class="filter-tabs" id="filter-tabs"></div>
+        <div class="project-grid" id="professional-grid"></div>
+    </div>
+</div>
+
+<!-- PERSONAL -->
+<div class="page" id="page-personal">
+    <div class="container">
+        <div class="page-header">
+            <h1>Personal Projects</h1>
+            <p>What I build when nobody is paying me to. Interactive installations, embedded systems, fabrication, and the occasional practical solve.</p>
+        </div>
+        <div class="project-grid" id="personal-grid"></div>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div class="page" id="page-about">
+    <div class="container">
+        <div class="page-header">
+            <h1>About + Contact</h1>
+        </div>
+        <div class="about-layout">
+            <div><img class="about-photo" id="aboutPhoto" src="" alt="Matthew Garrity"></div>
+            <div class="about-text">
+                <h3>Engineer, maker, builder of things that have to work.</h3>
+                <div id="aboutParagraphs"></div>
+                <div class="contact-block">
+                    <h4>Contact</h4>
+                    <div class="contact-links" id="contactLinks"></div>
+                </div>
+            </div>
+        </div>
+        <div class="skills-section">
+            <h3>Skills + Tools</h3>
+            <div class="skills-columns" id="skillsColumns"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <div class="modal-gallery">
+            <img id="modalImage" src="" alt="">
+            <button class="gallery-nav gallery-prev" onclick="prevImage()">&#8249;</button>
+            <button class="gallery-nav gallery-next" onclick="nextImage()">&#8250;</button>
+        </div>
+        <div class="gallery-dots" id="galleryDots"></div>
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <span>&copy; 2026 Matthew Garrity</span>
+            <div class="footer-links" id="footerLinks"></div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ============================================================
+    //  SITE BUILDER — You don't need to touch anything below
+    // ============================================================
+
+    function createCard(project) {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.dataset.tags = (project.filterTags || []).join(' ');
+        card.onclick = function() { openProject(project.id); };
+        card.innerHTML =
+            '<div class="project-card-img">' +
+                '<img src="' + project.images[0] + '" alt="' + project.title + '" loading="lazy">' +
+            '</div>' +
+            '<div class="project-card-body">' +
+                '<h3>' + project.title + '</h3>' +
+                '<p>' + project.summary + '</p>' +
+                '<div class="tags">' +
+                    project.tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') +
+                '</div>' +
+            '</div>';
+        return card;
+    }
+
+    function buildHome() {
+        document.getElementById('heroName').textContent = siteConfig.name;
+        document.getElementById('heroIntro').textContent = siteConfig.headline;
+        var grid = document.getElementById('featured-grid');
+        grid.innerHTML = '';
+        var featured = projects.filter(function(p) { return p.featured; }).slice(0, 4);
+        featured.forEach(function(p) { grid.appendChild(createCard(p)); });
+    }
+
+    function buildProfessional() {
+        var tabsEl = document.getElementById('filter-tabs');
+        tabsEl.innerHTML = '';
+        siteConfig.professionalFilters.forEach(function(f) {
+            var btn = document.createElement('button');
+            btn.className = 'filter-tab' + (f.value === 'all' ? ' active' : '');
+            btn.textContent = f.label;
+            btn.onclick = function() { filterProjects(f.value, btn); };
+            tabsEl.appendChild(btn);
+        });
+        var grid = document.getElementById('professional-grid');
+        grid.innerHTML = '';
+        projects.filter(function(p) { return p.category === 'professional'; }).forEach(function(p) {
+            grid.appendChild(createCard(p));
+        });
+    }
+
+    function buildPersonal() {
+        var grid = document.getElementById('personal-grid');
+        grid.innerHTML = '';
+        projects.filter(function(p) { return p.category === 'personal'; }).forEach(function(p) {
+            grid.appendChild(createCard(p));
+        });
+    }
+
+    function buildAbout() {
+        document.getElementById('aboutPhoto').src = siteConfig.photo;
+        var paragraphs = document.getElementById('aboutParagraphs');
+        paragraphs.innerHTML = siteConfig.aboutParagraphs.map(function(t) { return '<p>' + t + '</p>'; }).join('');
+        var contact = document.getElementById('contactLinks');
+        var contactHTML = '<a href="mailto:' + siteConfig.email + '">' + siteConfig.email + '</a>';
+        if (siteConfig.linkedin) contactHTML += '<a href="' + siteConfig.linkedin + '" target="_blank">LinkedIn</a>';
+        if (siteConfig.github) contactHTML += '<a href="' + siteConfig.github + '" target="_blank">GitHub</a>';
+        contact.innerHTML = contactHTML;
+        var skillsEl = document.getElementById('skillsColumns');
+        skillsEl.innerHTML = siteConfig.skills.map(function(s) {
+            return '<div class="skills-col"><h4>' + s.heading + '</h4><ul>' +
+                s.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') +
+                '</ul></div>';
+        }).join('');
+        var footer = document.getElementById('footerLinks');
+        var footerHTML = '<a href="mailto:' + siteConfig.email + '">Email</a>';
+        if (siteConfig.linkedin) footerHTML += '<a href="' + siteConfig.linkedin + '" target="_blank">LinkedIn</a>';
+        if (siteConfig.github) footerHTML += '<a href="' + siteConfig.github + '" target="_blank">GitHub</a>';
+        footer.innerHTML = footerHTML;
+    }
+
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+        document.getElementById('page-' + pageId).classList.add('active');
+        document.querySelectorAll('.nav-links a').forEach(function(a) {
+            a.classList.toggle('active', a.dataset.page === pageId);
+        });
+        document.getElementById('navLinks').classList.remove('open');
+        window.scrollTo(0, 0);
+    }
+
+    function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    function filterProjects(tag, btn) {
+        document.querySelectorAll('.filter-tab').forEach(function(t) { t.classList.remove('active'); });
+        btn.classList.add('active');
+        document.querySelectorAll('#professional-grid .project-card').forEach(function(card) {
+            if (tag === 'all') {
+                card.style.display = '';
+            } else {
+                var tags = card.dataset.tags || '';
+                card.style.display = tags.includes(tag) ? '' : 'none';
+            }
+        });
+    }
+
+    var currentImages = [];
+    var currentIndex = 0;
+
+    function openProject(id) {
+        var project = projects.find(function(p) { return p.id === id; });
+        if (!project) return;
+        currentImages = project.images;
+        currentIndex = 0;
+        document.getElementById('modalImage').src = currentImages[0];
+        var dotsEl = document.getElementById('galleryDots');
+        dotsEl.innerHTML = currentImages.map(function(_, i) {
+            return '<div class="gallery-dot ' + (i === 0 ? 'active' : '') + '" onclick="goToImage(' + i + ')"></div>';
+        }).join('');
+        document.querySelectorAll('.gallery-nav').forEach(function(n) {
+            n.style.display = currentImages.length > 1 ? 'flex' : 'none';
+        });
+        dotsEl.style.display = currentImages.length > 1 ? 'flex' : 'none';
+        var html = '<h2>' + project.title + '</h2>';
+        html += '<div class="modal-meta">' + project.subtitle + '</div>';
+        project.sections.forEach(function(s) {
+            html += '<div class="modal-section"><h4>' + s.heading + '</h4><p>' + s.text + '</p></div>';
+        });
+        html += '<div class="tags" style="margin-top:24px;">' + project.tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div>';
+        document.getElementById('modalContent').innerHTML = html;
+        document.getElementById('modalOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+        if (e && e.target !== e.currentTarget) return;
+        document.getElementById('modalOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function goToImage(i) {
+        currentIndex = i;
+        document.getElementById('modalImage').src = currentImages[currentIndex];
+        document.querySelectorAll('.gallery-dot').forEach(function(d, idx) {
+            d.classList.toggle('active', idx === currentIndex);
+        });
+    }
+
+    function nextImage() { goToImage((currentIndex + 1) % currentImages.length); }
+    function prevImage() { goToImage((currentIndex - 1 + currentImages.length) % currentImages.length); }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+        var modalOpen = document.getElementById('modalOverlay').classList.contains('active');
+        if (e.key === 'ArrowRight' && modalOpen) nextImage();
+        if (e.key === 'ArrowLeft' && modalOpen) prevImage();
+    });
+
+    // INIT
+    buildHome();
+    buildProfessional();
+    buildPersonal();
+    buildAbout();
+</script>
+</body>
+</html>
