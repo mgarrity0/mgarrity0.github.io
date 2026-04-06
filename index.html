@@ -654,6 +654,7 @@ const siteConfig = {
         <li><a onclick="showPage('professional')" data-page="professional">Professional Work</a></li>
         <li><a onclick="showPage('personal')" data-page="personal">Personal Projects</a></li>
         <li><a onclick="showPage('about')" data-page="about">About + Contact</a></li>
+        <li><a href="Matt Garrity.pdf" target="_blank">Resume</a></li>
     </ul>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -825,6 +826,7 @@ const siteConfig = {
         var contactHTML = '<a href="mailto:' + siteConfig.email + '">' + siteConfig.email + '</a>';
         if (siteConfig.linkedin) contactHTML += '<a href="' + siteConfig.linkedin + '" target="_blank">LinkedIn</a>';
         if (siteConfig.github) contactHTML += '<a href="' + siteConfig.github + '" target="_blank">GitHub</a>';
+        if (siteConfig.resume) contactHTML += '<a href="' + siteConfig.resume + '" target="_blank">Download Resume</a>';
         contact.innerHTML = contactHTML;
         var skillsEl = document.getElementById('skillsColumns');
         skillsEl.innerHTML = siteConfig.skills.map(function(s) {
@@ -836,6 +838,7 @@ const siteConfig = {
         var footerHTML = '<a href="mailto:' + siteConfig.email + '">Email</a>';
         if (siteConfig.linkedin) footerHTML += '<a href="' + siteConfig.linkedin + '" target="_blank">LinkedIn</a>';
         if (siteConfig.github) footerHTML += '<a href="' + siteConfig.github + '" target="_blank">GitHub</a>';
+        if (siteConfig.resume) footerHTML += '<a href="' + siteConfig.resume + '" target="_blank">Resume</a>';
         footer.innerHTML = footerHTML;
     }
 
