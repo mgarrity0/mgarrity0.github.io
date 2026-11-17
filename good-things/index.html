@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>3 Good Things</title>
+  <meta name="description" content="Three good things a day, and a quick reset when spiralling.">
+
+  <!-- PWA: its own app, separate from the rock (own manifest, scope and service worker) -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#101216">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Good Things">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+
+  <!-- Same faces as the log page on claude.ai; sw.js caches them for offline use -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" crossorigin="anonymous">
+
+  <style>
+    :root {
+      /* Night palette shared with the log page; amber lamps = the icon. One dark theme on purpose. */
+      --bg: #101216;
+      --surface: #171b22;
+      --line: #262e3a;
+      --text: #ede7da;
+      --muted: #959dab;
+      --accent: #f0b54a;
+      --accent-ink: #1d1406;
+      --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+      --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font: 400 16px/1.5 var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    [hidden] { display: none !important; }
+    .wrap {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: calc(22px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-right)) calc(36px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-left));
+      display: grid;
+      gap: 22px;
+    }
+    header { display: flex; align-items: center; gap: 12px; }
+    .logo { width: 36px; height: 36px; image-rendering: pixelated; flex: none; }
+    h1 { font-family: var(--font-display); font-weight: 600; font-size: 28px; line-height: 1.1; margin: 0; flex: 1; text-wrap: balance; }
+    h2 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+    p { margin: 0; }
+    button { font: 600 15px var(--font-body); cursor: pointer; }
+    button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .install {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--line); border-radius: 8px;
+      padding: 8px 12px;
+    }
+
+    .tabs { display: flex; gap: 22px; border-bottom: 1px solid var(--line); }
+    .tab {
+      background: none; border: 0; border-radius: 0;
+      padding: 10px 0; margin-bottom: -1px;
+      color: var(--muted);
+      border-bottom: 2px solid transparent;
+    }
+    .tab[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+    .view { display: grid; gap: 22px; }
+
+    /* Good things */
+    .cta {
+      display: grid; gap: 4px;
+      background: var(--accent); color: var(--accent-ink);
+      border-radius: 12px; padding: 18px 20px;
+      text-decoration: none;
+    }
+    .cta-main { font-family: var(--font-display); font-weight: 600; font-size: 24px; line-height: 1.2; }
+    .cta-sub { font-size: 14px; opacity: 0.85; }
+    .note { color: var(--muted); }
+    .method { border-top: 1px solid var(--line); padding-top: 18px; display: grid; gap: 6px; }
+    .method h2 { font-size: 18px; }
+    .method p { color: var(--muted); }
+    .hint { color: var(--muted); font-size: 14px; border: 1px dashed var(--line); border-radius: 10px; padding: 12px 14px; }
+
+    /* Spiralling? */
+    .pick { color: var(--muted); font-size: 18px; }
+    .moves { list-style: none; margin: 0; padding: 0; display: grid; gap: 26px; counter-reset: mv; }
+    .moves li { display: grid; grid-template-columns: 30px 1fr; gap: 6px 12px; counter-increment: mv; }
+    .moves li::before { content: counter(mv); font-family: var(--font-display); font-weight: 600; color: var(--accent); font-size: 26px; line-height: 1.15; grid-row: span 2; }
+    .moves h3 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 26px; line-height: 1.15; text-wrap: balance; }
+    .moves p { color: var(--muted); }
+
+    footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px; }
+    footer a { color: var(--muted); text-underline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <img class="logo" src="icons/icon-192.png" alt="" width="36" height="36">
+    <h1>3 Good Things</h1>
+    <button type="button" class="install" id="installBtn" hidden>Install</button>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Views">
+    <button type="button" class="tab" role="tab" id="tab-log" aria-controls="view-log" aria-selected="true">Good things</button>
+    <button type="button" class="tab" role="tab" id="tab-spiral" aria-controls="view-spiral" aria-selected="false" tabindex="-1">Spiralling?</button>
+  </nav>
+
+  <section class="view" id="view-log" role="tabpanel" aria-labelledby="tab-log">
+    <a class="cta" id="openLog" href="https://claude.ai/artifact/AgBxNuW8CaNwP4FwzxVLRW" target="_blank" rel="noopener">
+      <span class="cta-main">Write today's three</span>
+      <span class="cta-sub">Opens your log on claude.ai, with your streak. Needs you signed in.</span>
+    </a>
+    <p class="note">Or answer Claude's evening check-in. Both land in the same log.</p>
+    <div class="method">
+      <h2>Each night</h2>
+      <p>Three things that went well, and why each one happened. Small and specific counts.</p>
+    </div>
+    <p class="hint" id="installHint" hidden>To put this on your home screen: Chrome menu (⋮) &gt; Add to Home screen, or Install app.</p>
+  </section>
+
+  <section class="view" id="view-spiral" role="tabpanel" aria-labelledby="tab-spiral" hidden>
+    <h2 class="pick">Pick one.</h2>
+    <ol class="moves">
+      <li><h3>Ask how, not why.</h3><p>What exactly happened? What's one next step?</p></li>
+      <li><h3>Use your name.</h3><p>“Matt, what's actually going on?”</p></li>
+      <li><h3>Park it.</h3><p>Jot one word. Save it for a set 30‑minute slot.</p></li>
+      <li><h3>Walk somewhere green.</h3><p>A park, not a busy street.</p></li>
+    </ol>
+    <footer>
+      Sources: <a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/S0033291711002480" target="_blank" rel="noopener">Watkins 2012</a> ·
+      <a href="https://journals.sagepub.com/doi/abs/10.1177/2167702620951539" target="_blank" rel="noopener">Orvell 2020</a> ·
+      <a href="https://doi.org/10.1007/s41811-023-00193-x" target="_blank" rel="noopener">Dippel 2023</a> ·
+      <a href="https://pubmed.ncbi.nlm.nih.gov/26124129" target="_blank" rel="noopener">Bratman 2015</a>
+    </footer>
+  </section>
+</main>
+
+<script>
+(() => {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+
+  // ---- Tabs: #spiralling opens the second view (also the home-screen shortcut) ----
+  const tabs = [$("tab-log"), $("tab-spiral")];
+  let view = location.hash === "#spiralling" ? "spiralling" : "log";
+  function showView() {
+    const sp = view === "spiralling";
+    $("view-log").hidden = sp;
+    $("view-spiral").hidden = !sp;
+    $("tab-log").setAttribute("aria-selected", String(!sp));
+    $("tab-spiral").setAttribute("aria-selected", String(sp));
+    $("tab-log").tabIndex = sp ? -1 : 0;
+    $("tab-spiral").tabIndex = sp ? 0 : -1;
+  }
+  function setView(v) {
+    view = v;
+    try { history.replaceState(null, "", v === "spiralling" ? "#spiralling" : location.pathname + location.search); } catch (e) { /* ignore */ }
+    showView();
+  }
+  $("tab-log").addEventListener("click", () => setView("log"));
+  $("tab-spiral").addEventListener("click", () => setView("spiralling"));
+  tabs.forEach((t, i) => t.addEventListener("keydown", (ev) => {
+    if (ev.key === "ArrowRight" || ev.key === "ArrowLeft") {
+      ev.preventDefault();
+      tabs[1 - i].focus();
+      tabs[1 - i].click();
+    }
+  }));
+  window.addEventListener("hashchange", () => {
+    view = location.hash === "#spiralling" ? "spiralling" : "log";
+    showView();
+  });
+  showView();
+
+  // ---- Offline shell ----
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js").catch(() => { /* app still works online */ });
+    });
+  }
+
+  // ---- Install: Chrome's own prompt when it offers one, menu steps otherwise ----
+  const isStandalone = () =>
+    (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
+  let deferredInstall = null;
+
+  function syncInstallUI() {
+    const installed = isStandalone();
+    $("installBtn").hidden = installed || !deferredInstall;
+    $("installHint").hidden = installed || !!deferredInstall;
+  }
+  window.addEventListener("beforeinstallprompt", (ev) => {
+    ev.preventDefault();
+    deferredInstall = ev;
+    syncInstallUI();
+  });
+  $("installBtn").addEventListener("click", async () => {
+    if (!deferredInstall) return;
+    const ev = deferredInstall;
+    deferredInstall = null;
+    $("installBtn").hidden = true;
+    try {
+      ev.prompt();
+      await ev.userChoice;
+    } catch (e) { /* prompt refused or already used */ }
+    syncInstallUI();
+  });
+  window.addEventListener("appinstalled", () => {
+    deferredInstall = null;
+    syncInstallUI();
+  });
+  // Give Chrome a moment to fire beforeinstallprompt before showing the manual steps.
+  setTimeout(syncInstallUI, 2500);
+})();
+</script>
+</body>
+</html>
